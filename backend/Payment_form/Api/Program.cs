@@ -1,3 +1,4 @@
+using Api.Middleware;
 using Application.Contracts.PaymentContracts;
 using Application.Services;
 using Infrastructure.ContextDb;
@@ -20,7 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         b => b.MigrationsAssembly("Infrastructure")));
 
 var app = builder.Build();
-
+app.UseMiddleware<ApiKeyMiddleware>();
 app.MapControllers();
 
 app.Run();

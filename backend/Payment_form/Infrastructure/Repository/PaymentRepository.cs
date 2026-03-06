@@ -20,8 +20,8 @@ public class PaymentRepository : IPaymentRepository
         return payment;
     }
 
-    public Task<List<Payment>> GetPayments()
+    public async Task<List<Payment>> GetPayments()
     {
-        return _dbContext.Payments.ToListAsync();
+        return await _dbContext.Payments.ToListAsync();
     }
 }

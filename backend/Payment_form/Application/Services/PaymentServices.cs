@@ -18,7 +18,7 @@ public class PaymentServices : IPaymentServices
     public async Task<PaymentResponseDto> CreatePayment(CreatePaymentRequestDto dto)
     {
         
-        if (string.IsNullOrEmpty(dto.WalletNumber) || dto.Amount <= 0 || string.IsNullOrEmpty(dto.Email))
+        if (string.IsNullOrEmpty(dto.WalletNumber) || dto.Amount <= 0 || string.IsNullOrEmpty(dto.Email) || dto.AccountId <= 0)
         {
             var invalidPayment = new Payment(dto.WalletNumber, dto.Amount, dto.AccountId, dto.Email, dto.Phone, dto.Currency , DateTime.UtcNow,nameof(PaymentStatus.Rejected) ,dto.Comment);
             await _paymentRepository.CreatePayment(invalidPayment);
